@@ -1,6 +1,5 @@
-const { BrowserWindow, globalShortcut } = require('electron')
+const { app, BrowserWindow, globalShortcut } = require('electron')
 const defaultKey = 'CommandOrControl+Alt+J'
-let key;
 
 const openDevTools = () => {
   const win = BrowserWindow.getFocusedWindow();
@@ -16,12 +15,12 @@ const openDevTools = () => {
   }`);
 }
 
-exports.onApp = app => {
-  key = app.config.getConfig().openDevToolsKey || defaultKey
-  globalShortcut.register(key, openDevTools)
+const getKey = () => app.config.getConfig().openDevToolsKey || defaultKey
+
+exports.onApp = () => {
+  globalShortcut.register(getKey(), openDevTools)
 }
 
 exports.onUnload = () => {
-  if (!key) return;
-  globalShortcut.unregister(key)
+  globalShortcut.unregister(getKey())
 }
