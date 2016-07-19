@@ -1,6 +1,6 @@
 # hyperterm-open-devtools
 
-> Open devtools for currently showing web page of [HyperTerm](https://hyperterm.org)
+> Open DevTools for currently showing web page with a hotkey on [HyperTerm](https://hyperterm.org)
 
 ![Screenshot](https://cloud.githubusercontent.com/assets/3001525/16934145/35968d36-4d86-11e6-8f1f-affcc9c07543.gif)
 
