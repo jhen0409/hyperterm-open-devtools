@@ -16,12 +16,12 @@ const openDevTools = () => {
   }`);
 }
 
-module.exports.onApp = app => {
+exports.onApp = app => {
   key = app.config.getConfig().openDevToolsKey || defaultKey
   globalShortcut.register(key, openDevTools)
 }
 
-module.exports.onUnload = () => {
+exports.onUnload = () => {
   if (!key) return;
   globalShortcut.unregister(key)
 }
