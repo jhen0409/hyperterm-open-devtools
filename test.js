@@ -8,17 +8,18 @@ const robot = require('robotjs')
 const delay = time => new Promise(resolve => setTimeout(resolve, time))
 const hypertermPath = path.join(__dirname, 'HyperTerm.app/Contents')
 
-const replaceCode = (filePath, from, to) =>
+const replaceCode = (filePath, from, to) => {
   fs.writeFileSync(
     filePath,
     fs.readFileSync(filePath, 'utf-8')
       .replace(from, to)
   )
+}
 
 [
   [`${homedir()}/.test-hyperterm.js`, 'LOCAL_PACKAGE', process.cwd()],
   [`${hypertermPath}/Resources/app/config.js`, '.hyperterm.js', '.test-hyperterm.js'],
-  [`${hypertermPath}/Resources/app/plugins.js`, '.hyperterm_plugins', '.test-hyperterm_plugins'],
+  [`${hypertermPath}/Resources/app/plugins.js`, '.hyperterm_plugins', '.test-hyperterm_plugins']
 ].forEach(args => replaceCode.apply(this, args))
 
 describe('Open devtools', function spec() {
