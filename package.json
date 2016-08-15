@@ -7,7 +7,7 @@
     "index.js"
   ],
   "scripts": {
-    "test": "mocha"
+    "test": "cp .test-hyperterm.js $HOME/.test-hyperterm.js && mocha"
   },
   "repository": {
     "type": "git",

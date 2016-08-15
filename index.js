@@ -2,8 +2,8 @@ const { app, BrowserWindow, globalShortcut } = require('electron')
 const defaultKey = 'CommandOrControl+Alt+J'
 
 const openDevTools = () => {
-  const win = BrowserWindow.getFocusedWindow();
-  if (!win) return;
+  const win = BrowserWindow.getFocusedWindow()
+  if (!win) return
 
   win.webContents.executeJavaScript(`{
     const webview = document.querySelector('.terms_termActive webview');
@@ -12,7 +12,7 @@ const openDevTools = () => {
         webview.openDevTools() :
         webview.closeDevTools();
     }
-  }`);
+  }`)
 }
 
 const getKey = () => app.config.getConfig().openDevToolsKey || defaultKey

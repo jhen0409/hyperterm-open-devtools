@@ -69,7 +69,8 @@ describe('Open devtools', function spec() {
       .then(this.app.client.getWindowCount)
       .then(count => {
         oldCount = count
-        robot.keyTap('j', ['command', 'alt'])
+        // Custom openDevToolsKey by .test-hyperterm.js
+        robot.keyTap('k', ['command', 'alt'])
       })
       .then(this.app.client.getWindowCount)
       .then(count => {

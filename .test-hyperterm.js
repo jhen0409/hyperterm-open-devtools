@@ -26,7 +26,8 @@ module.exports = {
       '#cc00ff',
       '#00ffff',
       '#ffffff'
-    ]
+    ],
+    openDevToolsKey: 'CommandOrControl+Alt+K',
   },
   plugins: [
     'hyperterm-open-devtools'
