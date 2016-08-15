@@ -27,10 +27,16 @@ describe('Open devtools', function spec() {
 
   before(() => {
     const configPath = path.join(__dirname, 'HyperTerm.app/Contents/Resources/app/config.js')
-    const configCode = fs.readFileSync(configPath, 'utf-8');
+    const configCode = fs.readFileSync(configPath, 'utf-8')
     fs.writeFileSync(
       configPath,
       configCode.replace('.hyperterm.js', '.test-hyperterm.js')
+    )
+    const pluginsPath = path.join(__dirname, 'HyperTerm.app/Contents/Resources/app/plugins.js')
+    const pluginsCode = fs.readFileSync(pluginsPath, 'utf-8')
+    fs.writeFileSync(
+      pluginsPath,
+      pluginsCode.replace('.hyperterm_plugins', '.test-hyperterm_plugins')
     )
     this.app = new Application({
       path: path.join(__dirname, 'HyperTerm.app/Contents/MacOS/HyperTerm'),
