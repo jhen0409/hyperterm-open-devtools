@@ -7,7 +7,7 @@ const robot = require('robotjs')
 
 const pluginPath = path.join(
   homedir(),
-  '.hyperterm_plugins/node_modules/hyperterm-open-devtools'
+  '.test-hyperterm_plugins/node_modules/hyperterm-open-devtools'
 )
 const delay = time => new Promise(resolve => setTimeout(resolve, time))
 const waitUntilPackageInstalled = () =>
