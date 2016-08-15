@@ -5,41 +5,28 @@ const { expect } = require('chai')
 const { Application } = require('spectron');
 const robot = require('robotjs')
 
-const pluginPath = path.join(
-  homedir(),
-  '.test-hyperterm_plugins/node_modules/hyperterm-open-devtools'
-)
 const delay = time => new Promise(resolve => setTimeout(resolve, time))
-const waitUntilPackageInstalled = () =>
-  new Promise(resolve => {
-    const packageInstalled = () => {
-      if (fs.existsSync(pluginPath)) {
-        resolve()
-      } else {
-        setTimeout(packageInstalled, 200)
-      }
-    }
-    packageInstalled()
-  })
+const hypertermPath = path.join(__dirname, 'HyperTerm.app/Contents')
+
+const replaceCode = (filePath, from, to) =>
+  fs.writeFileSync(
+    filePath,
+    fs.readFileSync(filePath, 'utf-8')
+      .replace(from, to)
+  )
+
+[
+  [`${homedir()}/.test-hyperterm.js`, 'LOCAL_PACKAGE', process.cwd()],
+  [`${hypertermPath}/Resources/app/config.js`, '.hyperterm.js', '.test-hyperterm.js'],
+  [`${hypertermPath}/Resources/app/plugins.js`, '.hyperterm_plugins', '.test-hyperterm_plugins'],
+].forEach(args => replaceCode.apply(this, args))
 
 describe('Open devtools', function spec() {
   this.timeout(10000)
 
   before(() => {
-    const configPath = path.join(__dirname, 'HyperTerm.app/Contents/Resources/app/config.js')
-    const configCode = fs.readFileSync(configPath, 'utf-8')
-    fs.writeFileSync(
-      configPath,
-      configCode.replace('.hyperterm.js', '.test-hyperterm.js')
-    )
-    const pluginsPath = path.join(__dirname, 'HyperTerm.app/Contents/Resources/app/plugins.js')
-    const pluginsCode = fs.readFileSync(pluginsPath, 'utf-8')
-    fs.writeFileSync(
-      pluginsPath,
-      pluginsCode.replace('.hyperterm_plugins', '.test-hyperterm_plugins')
-    )
     this.app = new Application({
-      path: path.join(__dirname, 'HyperTerm.app/Contents/MacOS/HyperTerm'),
+      path: `${hypertermPath}/MacOS/HyperTerm`,
       args: [],
     })
     return this.app.start()
@@ -57,7 +44,6 @@ describe('Open devtools', function spec() {
     return client.waitUntilWindowLoaded()
       .then(() => delay(2000))
       .then(() => client.windowByIndex(1))
-      .then(waitUntilPackageInstalled)
       .then(() => {
         const url = 'github.com'
         for (const key of url) {

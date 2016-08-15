@@ -29,8 +29,6 @@ module.exports = {
     ],
     openDevToolsKey: 'CommandOrControl+Alt+K',
   },
-  plugins: [
-    'hyperterm-open-devtools'
-  ],
-  localPlugins: []
+  plugins: [],
+  localPlugins: ['LOCAL_PACKAGE']
 };
