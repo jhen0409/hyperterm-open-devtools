@@ -1,6 +1,6 @@
 {
   "name": "hyperterm-open-devtools",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Open DevTools for currently showing web page with a hotkey on HyperTerm",
   "main": "index.js",
   "files": [
