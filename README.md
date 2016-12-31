@@ -1,4 +1,4 @@
-# hyperterm-open-devtools
+# hyperterm-open-devtools [![Build Status](https://travis-ci.org/jhen0409/hyperterm-open-devtools.svg?branch=master)](https://travis-ci.org/jhen0409/hyperterm-open-devtools)
 
 > Open DevTools for currently showing web page with a hotkey on [Hyper](https://hyper.is)
 
@@ -20,6 +20,10 @@ config: {
 ```
 
 You need restart app to apply the config.
+
+## How to install extension to devtools of webview use?
+
+You can use [hyperterm-install-devtools](https://github.com/jhen0409/hyperterm-install-devtools) to install devtools extension in Hyper.
 
 ## Test
 
