@@ -6,7 +6,11 @@ const openDevTools = () => {
   if (!win) return
 
   win.webContents.executeJavaScript(`{
-    const webview = document.querySelector('.terms_termActive webview');
+    let webview = document.querySelector('.term_fit webview');
+    if (!webview) {
+      // backward compatibility
+      webview = document.querySelector('.terms_termActive webview');
+    }
     if (webview && webview.openDevTools) {
       !webview.isDevToolsOpened() ?
         webview.openDevTools() :
