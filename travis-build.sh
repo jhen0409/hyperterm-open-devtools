@@ -8,7 +8,7 @@ nvm use --delete-prefix "$NODE_VERSION"
 node --version
 npm --version
 
-./fetch-hyperterm.sh
+./fetch-hyper.sh
 
 npm install
 npm test
